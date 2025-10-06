@@ -1,6 +1,6 @@
 """Comprehensive tests for flexible_matchers."""
-# pylint: disable=singleton-comparison, use-implicit-booleaness-not-comparison
 
+# pylint: disable=singleton-comparison, use-implicit-booleaness-not-comparison
 
 from flexible_matchers import (
     ANY_NOT_NONE,
