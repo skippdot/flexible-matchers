@@ -18,7 +18,7 @@ Example:
     }
 """
 
-from typing import Union
+from typing import Optional, Union
 
 __version__ = "0.1.0"
 __all__ = [
@@ -47,22 +47,16 @@ class NUMBER:
         >>> assert 42 != NUMBER(min_value=50)  # Fails: 42 < 50
     """
 
-    def __init__(self, min_value: Union[int, float] = None, max_value: Union[int, float] = None):
+    def __init__(self, min_value: Optional[Union[int, float]] = None, max_value: Optional[Union[int, float]] = None):
         self.min = min_value
         self.max = max_value
 
-    def __eq__(self, other: Union[int, float]) -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, (int, float)):
+            return False
         return (
-            type(other) in (int, float)
-            and (self.min is None or other >= self.min)
+            (self.min is None or other >= self.min)
             and (self.max is None or other <= self.max)
-        )
-
-    def __ne__(self, other: Union[int, float]) -> bool:
-        return (
-            type(other) not in (int, float)
-            or (self.min is not None and other < self.min)
-            or (self.max is not None and other > self.max)
         )
 
     def __repr__(self) -> str:
@@ -88,15 +82,10 @@ class CLOSE_NUMBER:
         self.value = value
         self.tolerance = tolerance
 
-    def __eq__(self, other: Union[int, float]) -> bool:
-        return type(other) in (int, float) and (
-            self.value is None or abs(other - self.value) <= self.tolerance
-        )
-
-    def __ne__(self, other: Union[int, float]) -> bool:
-        return type(other) not in (int, float) or (
-            self.value is not None and abs(other - self.value) > self.tolerance
-        )
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, (int, float)):
+            return False
+        return (self.value is None) or (abs(other - self.value) <= self.tolerance)
 
     def __str__(self) -> str:
         """String representation that just shows the value."""
@@ -122,23 +111,16 @@ class STRING:
         >>> assert "hello" != STRING(min_length=10)  # Fails: len("hello") < 10
     """
 
-    def __init__(self, length: int = None, min_length: int = None, max_length: int = None):
+    def __init__(self, length: Optional[int] = None, min_length: Optional[int] = None, max_length: Optional[int] = None):
         self.length = length
         self.min_length = min_length
         self.max_length = max_length
 
-    def __eq__(self, other: str) -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, str):
+            return False
         return (
-            isinstance(other, str)
-            and (self.length is None or len(other) == self.length)
-            and (self.min_length is None or len(other) >= self.min_length)
-            and (self.max_length is None or len(other) <= self.max_length)
-        )
-
-    def __ne__(self, other: str) -> bool:
-        return not (
-            isinstance(other, str)
-            and (self.length is None or len(other) == self.length)
+            (self.length is None or len(other) == self.length)
             and (self.min_length is None or len(other) >= self.min_length)
             and (self.max_length is None or len(other) <= self.max_length)
         )
@@ -161,18 +143,15 @@ class LIST:
         >>> assert [1, 2, 3] != LIST(5)  # Fails: len != 5
     """
 
-    def __init__(self, length: int = None):
+    def __init__(self, length: Optional[int] = None):
         self.expected_length = length
 
-    def __eq__(self, other: list) -> bool:
-        if self.expected_length:
-            return isinstance(other, list) and len(other) == self.expected_length
-        return isinstance(other, list)
-
-    def __ne__(self, other: list) -> bool:
-        if self.expected_length:
-            return not (isinstance(other, list) and len(other) == self.expected_length)
-        return not isinstance(other, list)
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, list):
+            return False
+        if self.expected_length is None:
+            return True
+        return len(other) == self.expected_length
 
     def __repr__(self) -> str:
         if self.expected_length is not None:
@@ -193,13 +172,13 @@ class _AnyNotNone:
         >>> assert None != ANY_NOT_NONE  # Fails: None is not allowed
     """
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         return other is not None
 
-    def __ne__(self, other):
+    def __ne__(self, other: object) -> bool:
         return other is None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "ANY_NOT_NONE"
 
 
