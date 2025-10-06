@@ -45,7 +45,7 @@ jobs:
         run: mypy src
 
   test:
-    name: Test Python ${{ matrix.python-version }}
+    name: Test ${{ matrix.os }} Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.python-version == '3.14' }}
     strategy:
