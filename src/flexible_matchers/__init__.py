@@ -47,9 +47,7 @@ class NUMBER:
         >>> assert 42 != NUMBER(min_value=50)  # Fails: 42 < 50
     """
 
-    def __init__(
-        self, min_value: Union[int, float] = None, max_value: Union[int, float] = None
-    ):
+    def __init__(self, min_value: Union[int, float] = None, max_value: Union[int, float] = None):
         self.min = min_value
         self.max = max_value
 
@@ -91,9 +89,8 @@ class CLOSE_NUMBER:
         self.tolerance = tolerance
 
     def __eq__(self, other: Union[int, float]) -> bool:
-        return (
-            type(other) in (int, float)
-            and (self.value is None or abs(other - self.value) <= self.tolerance)
+        return type(other) in (int, float) and (
+            self.value is None or abs(other - self.value) <= self.tolerance
         )
 
     def __ne__(self, other: Union[int, float]) -> bool:
@@ -125,9 +122,7 @@ class STRING:
         >>> assert "hello" != STRING(min_length=10)  # Fails: len("hello") < 10
     """
 
-    def __init__(
-        self, length: int = None, min_length: int = None, max_length: int = None
-    ):
+    def __init__(self, length: int = None, min_length: int = None, max_length: int = None):
         self.length = length
         self.min_length = min_length
         self.max_length = max_length
@@ -149,11 +144,7 @@ class STRING:
         )
 
     def __repr__(self) -> str:
-        if (
-            self.length is not None
-            or self.min_length is not None
-            or self.max_length is not None
-        ):
+        if self.length is not None or self.min_length is not None or self.max_length is not None:
             return f"<STRING({self.length}, {self.min_length}, {self.max_length})>"
         return "<STRING>"
 
