@@ -389,6 +389,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 ## Acknowledgments
 
 Inspired by:
+
 - [pychoir](https://github.com/kajaste/pychoir) - Modern matcher library
 - [dirty-equals](https://github.com/samuelcolvin/dirty-equals) - Flexible equality testing
 - [PyHamcrest](https://github.com/hamcrest/PyHamcrest) - Mature matcher framework
@@ -404,10 +405,10 @@ Inspired by:
 
 ## Links
 
-- **PyPI**: https://pypi.org/project/flexible-matchers/
-- **GitHub**: https://github.com/skippdot/flexible-matchers
-- **Issues**: https://github.com/skippdot/flexible-matchers/issues
-- **Changelog**: https://github.com/skippdot/flexible-matchers/releases
+- [PyPI](https://pypi.org/project/flexible-matchers/)
+- [GitHub](https://github.com/skippdot/flexible-matchers)
+- [Issues](https://github.com/skippdot/flexible-matchers/issues)
+- [Changelog](https://github.com/skippdot/flexible-matchers/releases)
 
 ---
 
