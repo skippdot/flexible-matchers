@@ -37,9 +37,9 @@ from flexible_matchers import NUMBER, STRING, CLOSE_NUMBER
 
 # Use in tests
 mock_func.assert_called_with(
-    user_id=NUMBER(min=1),
-    name=STRING(min_length=1),
-    score=CLOSE_NUMBER(100, tolerance=5)
+ user_id=NUMBER(min=1),
+ name=STRING(min_length=1),
+ score=CLOSE_NUMBER(100, tolerance=5)
 )
 ```
 
@@ -48,43 +48,43 @@ mock_func.assert_called_with(
 ### Immediate Actions Available
 
 1. **Test the Installation**
-   ```bash
-   pip install flexible-matchers
-   python -c "from flexible_matchers import NUMBER, STRING; print('Success!')"
-   ```
+ ```bash
+ pip install flexible-matchers
+ python -c "from flexible_matchers import NUMBER, STRING; print('Success!')"
+ ```
 
 2. **View Your Package on PyPI**
-   Visit: https://pypi.org/project/flexible-matchers/0.1.0/
+ Visit: https://pypi.org/project/flexible-matchers/0.1.0/
 
 3. **View Your GitHub Repository**
-   Visit: https://github.com/skippdot/flexible-matchers
+ Visit: https://github.com/skippdot/flexible-matchers
 
 4. **Check CI/CD Status**
-   Visit: https://github.com/skippdot/flexible-matchers/actions
+ Visit: https://github.com/skippdot/flexible-matchers/actions
 
 ### Optional Enhancements
 
 1. **Set Up Codecov (Code Coverage Badge)**
-   - Go to https://codecov.io/
-   - Sign in with GitHub
-   - Add the `flexible-matchers` repository
-   - Copy the badge markdown and add to README.md
+ - Go to https://codecov.io/
+ - Sign in with GitHub
+ - Add the `flexible-matchers` repository
+ - Copy the badge markdown and add to README.md
 
 2. **Create a Release on GitHub**
-   ```bash
-   gh release create v0.1.0 --title "v0.1.0 - Initial Release" --notes "First public release of flexible-matchers"
-   ```
-   This will trigger the automated PyPI publishing workflow (though the package is already published).
+ ```bash
+ gh release create v0.1.0 --title "v0.1.0 - Initial Release" --notes "First public release of flexible-matchers"
+ ```
+ This will trigger the automated PyPI publishing workflow (though the package is already published).
 
 3. **Add Topics to GitHub Repository**
-   - Go to: https://github.com/skippdot/flexible-matchers
-   - Click "Add topics"
-   - Suggested topics: `python`, `testing`, `mock`, `unittest`, `pytest`, `matchers`, `assertions`
+ - Go to: https://github.com/skippdot/flexible-matchers
+ - Click "Add topics"
+ - Suggested topics: `python`, `testing`, `mock`, `unittest`, `pytest`, `matchers`, `assertions`
 
 4. **Share Your Package**
-   - Post on social media
-   - Share in Python communities
-   - Add to your portfolio
+ - Post on social media
+ - Share in Python communities
+ - Add to your portfolio
 
 ## Automated Publishing
 
@@ -118,23 +118,23 @@ For future releases:
 
 ```
 flexible-matchers/
-├── .github/workflows/
-│   ├── ci.yml              # CI: lint, test, build
-│   └── publish.yml         # Auto-publish to PyPI on release
-├── src/flexible_matchers/
-│   ├── __init__.py         # Main package (230 lines)
-│   └── py.typed            # Type hints marker
-├── tests/
-│   ├── __init__.py
-│   └── test_matchers.py    # 34 tests, 100% coverage
-├── dist/                   # Built packages
-│   ├── flexible_matchers-0.1.0-py3-none-any.whl
-│   └── flexible_matchers-0.1.0.tar.gz
-├── pyproject.toml          # Package configuration
-├── README.md               # Documentation
-├── LICENSE                 # MIT License
-├── .gitignore              # Python gitignore
-└── .flake8                 # Linter config
+ .github/workflows/
+ ci.yml # CI: lint, test, build
+ publish.yml # Auto-publish to PyPI on release
+ src/flexible_matchers/
+ __init__.py # Main package (230 lines)
+ py.typed # Type hints marker
+ tests/
+ __init__.py
+ test_matchers.py # 34 tests, 100% coverage
+ dist/ # Built packages
+ flexible_matchers-0.1.0-py3-none-any.whl
+ flexible_matchers-0.1.0.tar.gz
+ pyproject.toml # Package configuration
+ README.md # Documentation
+ LICENSE # MIT License
+ .gitignore # Python gitignore
+ .flake8 # Linter config
 ```
 
 ## PyPI Token Security
@@ -149,7 +149,7 @@ The token is NOT committed to the repository.
 
 ```bash
 # Check package on PyPI
-pip search flexible-matchers  # (if search is enabled)
+pip search flexible-matchers # (if search is enabled)
 
 # Install and test
 pip install flexible-matchers

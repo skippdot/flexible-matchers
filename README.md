@@ -13,46 +13,46 @@
 
 `flexible-matchers` provides intuitive matcher objects for use with Python's `unittest.mock` and general test assertions. Unlike other matcher libraries, it uses Python's native equality operators, making it work seamlessly with standard assertions and mock calls.
 
-## ✨ Key Features
+## Key Features
 
-- **🎯 Zero Dependencies** - No external packages required
-- **�� Numeric Matchers** - Range-based and tolerance-based number matching
-- **📝 String Matchers** - Flexible length constraints for string validation
-- **📋 Collection Matchers** - List validation with length constraints
-- **🚫 None Handling** - Special matcher for non-None values
-- **🐍 Pythonic API** - Uses standard `==` operator, works with any assertion library
-- **⚡ Lightweight** - Simple, focused implementation
-- **🧪 Well-Tested** - Comprehensive test suite with 100% coverage
-- **📦 Type-Hinted** - Full type annotations for better IDE support
+- **Zero Dependencies** - No external packages required
+- **Numeric Matchers** - Range-based and tolerance-based number matching
+- **String Matchers** - Flexible length constraints for string validation
+- **Collection Matchers** - List validation with length constraints
+- **None Handling** - Special matcher for non-None values
+- **Pythonic API** - Uses standard `==` operator, works with any assertion library
+- **Lightweight** - Simple, focused implementation
+- **Well-Tested** - Comprehensive test suite with 100% coverage
+- **Type-Hinted** - Full type annotations for better IDE support
 
-## 🚀 Installation
+## Installation
 
 ```bash
 pip install flexible-matchers
 ```
 
-## 📖 Quick Start
+## Quick Start
 
 ```python
 from flexible_matchers import NUMBER, STRING, IS_NUMBER, ANY_NOT_NONE
 
 # In mock assertions
 mock_api.assert_called_with(
-    user_id=NUMBER(min_value=1),
-    name=STRING(min_length=1),
-    age=NUMBER(min_value=0, max_value=150)
+ user_id=NUMBER(min_value=1),
+ name=STRING(min_length=1),
+ age=NUMBER(min_value=0, max_value=150)
 )
 
 # In data structure comparisons
 response = {"id": 123, "name": "Alice", "created_at": "2024-01-01"}
 assert response == {
-    "id": IS_NUMBER,
-    "name": STRING(min_length=1),
-    "created_at": ANY_NOT_NONE
+ "id": IS_NUMBER,
+ "name": STRING(min_length=1),
+ "created_at": ANY_NOT_NONE
 }
 ```
 
-## 📚 Documentation
+## Documentation
 
 ### NUMBER
 
@@ -171,7 +171,7 @@ assert None != ANY_NOT_NONE
 
 **Use Case**: Perfect for API responses where you want to ensure a field exists but don't care about its specific value.
 
-## 🆚 Comparison with Other Libraries
+## Comparison with Other Libraries
 
 ### vs. unittest.mock.ANY
 
@@ -180,11 +180,11 @@ from unittest.mock import ANY
 from flexible_matchers import NUMBER, STRING
 
 # unittest.mock.ANY - too permissive
-assert {"age": -100} == {"age": ANY}  # Passes, but age is invalid!
+assert {"age": -100} == {"age": ANY} # Passes, but age is invalid!
 
 # flexible-matchers - precise validation
-assert {"age": 30} == {"age": NUMBER(min_value=0, max_value=150)}  # ✓
-assert {"age": -100} == {"age": NUMBER(min_value=0, max_value=150)}  # ✗
+assert {"age": 30} == {"age": NUMBER(min_value=0, max_value=150)} # [x]
+assert {"age": -100} == {"age": NUMBER(min_value=0, max_value=150)} # [ ]
 ```
 
 ### vs. PyHamcrest
@@ -210,7 +210,7 @@ assert 42 == IsPositiveInt
 # flexible-matchers - more flexible with ranges and tolerance
 from flexible_matchers import NUMBER, CLOSE_NUMBER
 assert 42 == NUMBER(min_value=0, max_value=100)
-assert 3.14 == CLOSE_NUMBER(3.1, tolerance=0.1)  # Not available in dirty-equals
+assert 3.14 == CLOSE_NUMBER(3.1, tolerance=0.1) # Not available in dirty-equals
 ```
 
 ### vs. pychoir
@@ -225,7 +225,7 @@ from flexible_matchers import NUMBER
 assert value == NUMBER(min_value=0, max_value=100)
 ```
 
-## 🎯 Real-World Examples
+## Real-World Examples
 
 ### API Testing
 
@@ -233,16 +233,16 @@ assert value == NUMBER(min_value=0, max_value=100)
 from flexible_matchers import NUMBER, STRING, ANY_NOT_NONE
 
 def test_create_user_api():
-    response = api.create_user(name="Alice", email="alice@example.com")
-    
-    assert response == {
-        "id": NUMBER(min_value=1),
-        "name": STRING(min_length=1, max_length=100),
-        "email": STRING(min_length=5),
-        "created_at": ANY_NOT_NONE,
-        "updated_at": ANY_NOT_NONE,
-        "is_active": True,
-    }
+ response = api.create_user(name="Alice", email="alice@example.com")
+ 
+ assert response == {
+ "id": NUMBER(min_value=1),
+ "name": STRING(min_length=1, max_length=100),
+ "email": STRING(min_length=5),
+ "created_at": ANY_NOT_NONE,
+ "updated_at": ANY_NOT_NONE,
+ "is_active": True,
+ }
 ```
 
 ### Mock Assertions
@@ -252,19 +252,19 @@ from unittest.mock import Mock
 from flexible_matchers import NUMBER, STRING
 
 def test_user_service():
-    mock_db = Mock()
-    service = UserService(mock_db)
-    
-    service.create_user(name="Alice", age=30)
-    
-    mock_db.insert.assert_called_once_with(
-        table="users",
-        data={
-            "name": STRING(min_length=1),
-            "age": NUMBER(min_value=0, max_value=150),
-            "created_at": ANY_NOT_NONE,
-        }
-    )
+ mock_db = Mock()
+ service = UserService(mock_db)
+ 
+ service.create_user(name="Alice", age=30)
+ 
+ mock_db.insert.assert_called_once_with(
+ table="users",
+ data={
+ "name": STRING(min_length=1),
+ "age": NUMBER(min_value=0, max_value=150),
+ "created_at": ANY_NOT_NONE,
+ }
+ )
 ```
 
 ### Nested Data Structures
@@ -273,31 +273,31 @@ def test_user_service():
 from flexible_matchers import NUMBER, STRING, LIST, IS_NUMBER
 
 def test_complex_response():
-    response = {
-        "users": [
-            {"id": 1, "name": "Alice", "scores": [95, 87, 92]},
-            {"id": 2, "name": "Bob", "scores": [88, 91, 85]},
-        ],
-        "total": 2,
-        "page": 1,
-    }
-    
-    assert response == {
-        "users": [
-            {
-                "id": IS_NUMBER,
-                "name": STRING(min_length=1),
-                "scores": LIST(3),
-            },
-            {
-                "id": IS_NUMBER,
-                "name": STRING(min_length=1),
-                "scores": LIST(3),
-            },
-        ],
-        "total": NUMBER(min_value=0),
-        "page": NUMBER(min_value=1),
-    }
+ response = {
+ "users": [
+ {"id": 1, "name": "Alice", "scores": [95, 87, 92]},
+ {"id": 2, "name": "Bob", "scores": [88, 91, 85]},
+ ],
+ "total": 2,
+ "page": 1,
+ }
+ 
+ assert response == {
+ "users": [
+ {
+ "id": IS_NUMBER,
+ "name": STRING(min_length=1),
+ "scores": LIST(3),
+ },
+ {
+ "id": IS_NUMBER,
+ "name": STRING(min_length=1),
+ "scores": LIST(3),
+ },
+ ],
+ "total": NUMBER(min_value=0),
+ "page": NUMBER(min_value=1),
+ }
 ```
 
 ### Floating-Point Comparisons
@@ -306,15 +306,15 @@ def test_complex_response():
 from flexible_matchers import CLOSE_NUMBER
 
 def test_scientific_calculation():
-    result = calculate_pi()
-    assert result == CLOSE_NUMBER(3.14159, tolerance=0.00001)
-    
+ result = calculate_pi()
+ assert result == CLOSE_NUMBER(3.14159, tolerance=0.00001)
+ 
 def test_financial_calculation():
-    total = calculate_total([10.10, 20.20, 30.30])
-    assert total == CLOSE_NUMBER(60.60, tolerance=0.01)
+ total = calculate_total([10.10, 20.20, 30.30])
+ assert total == CLOSE_NUMBER(60.60, tolerance=0.01)
 ```
 
-## 🛠️ Development
+## Development
 
 ### Setup
 
@@ -375,16 +375,16 @@ pytest --cov=flexible_matchers --cov-report=term-missing
 mypy src
 ```
 
-## 📋 Requirements
+## Requirements
 
 - Python >= 3.7
 - No runtime dependencies!
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
@@ -394,7 +394,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Inspired by:
 - [pychoir](https://github.com/kajaste/pychoir) - Modern matcher library
@@ -402,7 +402,7 @@ Inspired by:
 - [PyHamcrest](https://github.com/hamcrest/PyHamcrest) - Mature matcher framework
 - [callee](https://github.com/Xion/callee) - Argument matchers (now abandoned)
 
-## 📊 Project Stats
+## Project Stats
 
 - **Zero Dependencies**: No external packages required
 - **100% Test Coverage**: Comprehensive test suite
@@ -410,7 +410,7 @@ Inspired by:
 - **Python 3.7+**: Modern Python support
 - **Active Maintenance**: Regular updates and improvements
 
-## 🔗 Links
+## Links
 
 - **PyPI**: https://pypi.org/project/flexible-matchers/
 - **GitHub**: https://github.com/skippdot/flexible-matchers
@@ -419,4 +419,4 @@ Inspired by:
 
 ---
 
-Made with ❤️ by [Stepan Shamaiev](https://github.com/skippdot)
+Made with by [Stepan Shamaiev](https://github.com/skippdot)
