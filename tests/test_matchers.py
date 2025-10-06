@@ -1,7 +1,5 @@
 """Comprehensive tests for flexible_matchers."""
 
-import pytest
-
 from flexible_matchers import (
     ANY_NOT_NONE,
     CLOSE_NUMBER,
