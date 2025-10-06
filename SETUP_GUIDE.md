@@ -29,7 +29,7 @@ Your PyPI package `flexible-matchers` has been successfully created at:
 ### CI/CD
 - `.github/workflows/ci.yml` - Comprehensive CI pipeline
  - Linting with all tools
- - Testing on Python 3.7-3.12
+ - Testing on Python 3.8-3.14 (3.14 pre-release allowed in CI)
  - Testing on Ubuntu, macOS, Windows
  - Docker-based testing
  - Code coverage reporting

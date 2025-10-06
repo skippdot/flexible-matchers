@@ -1,15 +1,16 @@
 """Comprehensive tests for flexible_matchers."""
 
 import pytest
+
 from flexible_matchers import (
-    NUMBER,
-    CLOSE_NUMBER,
-    STRING,
-    LIST,
     ANY_NOT_NONE,
+    CLOSE_NUMBER,
+    IS_LIST,
     IS_NUMBER,
     IS_STRING,
-    IS_LIST,
+    LIST,
+    NUMBER,
+    STRING,
 )
 
 

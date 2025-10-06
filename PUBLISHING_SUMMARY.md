@@ -99,7 +99,7 @@ For future releases:
 
 - Package Name: flexible-matchers
 - Version: 0.1.0
-- Python Support: 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
+- Python Support: 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14
 - License: MIT
 - Dependencies: None (zero dependencies!)
 - Test Coverage: 100%

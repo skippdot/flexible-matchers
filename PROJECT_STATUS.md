@@ -13,7 +13,7 @@
 - **Location:**`/Users/skipp/Projects/dev/flexible-matchers`
 - **Author:**Stepan Shamaiev (skippdot)
 - **License:**MIT
-- **Python Support:**3.7, 3.8, 3.9, 3.10, 3.11, 3.12
+- **Python Support:**3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14
 
 ### Purpose
 A lightweight, zero-dependency Python library providing flexible matcher objects for `unittest.mock` assertions and general test comparisons. Ported from `tests/mock_helper.py` in the mapx-api project.
@@ -102,7 +102,7 @@ flexible-matchers/
 
  .github/
  workflows/
- ci.yml # CI: lint, test (3.7-3.12), build, docker
+ ci.yml # CI: lint, test (3.8-3.14; 3.14 pre-release allowed), build, docker
  publish.yml # Auto-publish to PyPI on release
 
  src/
@@ -432,7 +432,7 @@ git push
 - **Number of Tests:**34
 - **Number of Matchers:**5 (+ 3 pre-instantiated)
 - **Dependencies:**0 (zero!)
-- **Supported Python Versions:**6 (3.7-3.12)
+- **Supported Python Versions:**7 (3.8-3.14; 3.14 pre-release)
 - **Supported Operating Systems:**3 (Linux, macOS, Windows)
 
 ---

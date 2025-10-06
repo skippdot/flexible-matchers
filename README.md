@@ -377,7 +377,7 @@ mypy src
 
 ## Requirements
 
-- Python >= 3.7
+- Python >= 3.8 (tested on 3.8, 3.9, 3.10, 3.11, 3.12, 3.13; pre-release 3.14 allowed in CI)
 - No runtime dependencies!
 
 ## License
@@ -407,7 +407,7 @@ Inspired by:
 - **Zero Dependencies**: No external packages required
 - **100% Test Coverage**: Comprehensive test suite
 - **Type Hinted**: Full type annotations
-- **Python 3.7+**: Modern Python support
+- **Python 3.8+**: Modern Python support
 - **Active Maintenance**: Regular updates and improvements
 
 ## Links
