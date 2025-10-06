@@ -47,17 +47,18 @@ class NUMBER:
         >>> assert 42 != NUMBER(min_value=50)  # Fails: 42 < 50
     """
 
-    def __init__(self, min_value: Optional[Union[int, float]] = None, max_value: Optional[Union[int, float]] = None):
+    def __init__(
+        self,
+        min_value: Optional[Union[int, float]] = None,
+        max_value: Optional[Union[int, float]] = None,
+    ):
         self.min = min_value
         self.max = max_value
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, (int, float)):
             return False
-        return (
-            (self.min is None or other >= self.min)
-            and (self.max is None or other <= self.max)
-        )
+        return (self.min is None or other >= self.min) and (self.max is None or other <= self.max)
 
     def __repr__(self) -> str:
         if self.min is not None or self.max is not None:
@@ -111,7 +112,12 @@ class STRING:
         >>> assert "hello" != STRING(min_length=10)  # Fails: len("hello") < 10
     """
 
-    def __init__(self, length: Optional[int] = None, min_length: Optional[int] = None, max_length: Optional[int] = None):
+    def __init__(
+        self,
+        length: Optional[int] = None,
+        min_length: Optional[int] = None,
+        max_length: Optional[int] = None,
+    ):
         self.length = length
         self.min_length = min_length
         self.max_length = max_length
