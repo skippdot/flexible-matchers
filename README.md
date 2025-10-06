@@ -38,17 +38,17 @@ from flexible_matchers import NUMBER, STRING, IS_NUMBER, ANY_NOT_NONE
 
 # In mock assertions
 mock_api.assert_called_with(
- user_id=NUMBER(min_value=1),
- name=STRING(min_length=1),
- age=NUMBER(min_value=0, max_value=150)
+    user_id=NUMBER(min_value=1),
+    name=STRING(min_length=1),
+    age=NUMBER(min_value=0, max_value=150),
 )
 
 # In data structure comparisons
 response = {"id": 123, "name": "Alice", "created_at": "2024-01-01"}
 assert response == {
- "id": IS_NUMBER,
- "name": STRING(min_length=1),
- "created_at": ANY_NOT_NONE
+    "id": IS_NUMBER,
+    "name": STRING(min_length=1),
+    "created_at": ANY_NOT_NONE,
 }
 ```
 
@@ -233,16 +233,16 @@ assert value == NUMBER(min_value=0, max_value=100)
 from flexible_matchers import NUMBER, STRING, ANY_NOT_NONE
 
 def test_create_user_api():
- response = api.create_user(name="Alice", email="alice@example.com")
- 
- assert response == {
- "id": NUMBER(min_value=1),
- "name": STRING(min_length=1, max_length=100),
- "email": STRING(min_length=5),
- "created_at": ANY_NOT_NONE,
- "updated_at": ANY_NOT_NONE,
- "is_active": True,
- }
+    response = api.create_user(name="Alice", email="alice@example.com")
+
+    assert response == {
+        "id": NUMBER(min_value=1),
+        "name": STRING(min_length=1, max_length=100),
+        "email": STRING(min_length=5),
+        "created_at": ANY_NOT_NONE,
+        "updated_at": ANY_NOT_NONE,
+        "is_active": True,
+    }
 ```
 
 ### Mock Assertions
@@ -252,19 +252,19 @@ from unittest.mock import Mock
 from flexible_matchers import NUMBER, STRING
 
 def test_user_service():
- mock_db = Mock()
- service = UserService(mock_db)
- 
- service.create_user(name="Alice", age=30)
- 
- mock_db.insert.assert_called_once_with(
- table="users",
- data={
- "name": STRING(min_length=1),
- "age": NUMBER(min_value=0, max_value=150),
- "created_at": ANY_NOT_NONE,
- }
- )
+    mock_db = Mock()
+    service = UserService(mock_db)
+
+    service.create_user(name="Alice", age=30)
+
+    mock_db.insert.assert_called_once_with(
+        table="users",
+        data={
+            "name": STRING(min_length=1),
+            "age": NUMBER(min_value=0, max_value=150),
+            "created_at": ANY_NOT_NONE,
+        },
+    )
 ```
 
 ### Nested Data Structures
@@ -273,31 +273,23 @@ def test_user_service():
 from flexible_matchers import NUMBER, STRING, LIST, IS_NUMBER
 
 def test_complex_response():
- response = {
- "users": [
- {"id": 1, "name": "Alice", "scores": [95, 87, 92]},
- {"id": 2, "name": "Bob", "scores": [88, 91, 85]},
- ],
- "total": 2,
- "page": 1,
- }
- 
- assert response == {
- "users": [
- {
- "id": IS_NUMBER,
- "name": STRING(min_length=1),
- "scores": LIST(3),
- },
- {
- "id": IS_NUMBER,
- "name": STRING(min_length=1),
- "scores": LIST(3),
- },
- ],
- "total": NUMBER(min_value=0),
- "page": NUMBER(min_value=1),
- }
+    response = {
+        "users": [
+            {"id": 1, "name": "Alice", "scores": [95, 87, 92]},
+            {"id": 2, "name": "Bob", "scores": [88, 91, 85]},
+        ],
+        "total": 2,
+        "page": 1,
+    }
+
+    assert response == {
+        "users": [
+            {"id": IS_NUMBER, "name": STRING(min_length=1), "scores": LIST(3)},
+            {"id": IS_NUMBER, "name": STRING(min_length=1), "scores": LIST(3)},
+        ],
+        "total": NUMBER(min_value=0),
+        "page": NUMBER(min_value=1),
+    }
 ```
 
 ### Floating-Point Comparisons
@@ -306,12 +298,12 @@ def test_complex_response():
 from flexible_matchers import CLOSE_NUMBER
 
 def test_scientific_calculation():
- result = calculate_pi()
- assert result == CLOSE_NUMBER(3.14159, tolerance=0.00001)
- 
+    result = calculate_pi()
+    assert result == CLOSE_NUMBER(3.14159, tolerance=0.00001)
+
 def test_financial_calculation():
- total = calculate_total([10.10, 20.20, 30.30])
- assert total == CLOSE_NUMBER(60.60, tolerance=0.01)
+    total = calculate_total([10.10, 20.20, 30.30])
+    assert total == CLOSE_NUMBER(60.60, tolerance=0.01)
 ```
 
 ## Development
@@ -377,7 +369,7 @@ mypy src
 
 ## Requirements
 
-- Python >= 3.8 (tested on 3.8, 3.9, 3.10, 3.11, 3.12, 3.13; pre-release 3.14 allowed in CI)
+- Python >= 3.8 (tested on 3.8-3.14 across Linux, macOS, and Windows)
 - No runtime dependencies!
 
 ## License
